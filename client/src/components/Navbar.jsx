@@ -28,6 +28,22 @@ const Navbar = () => {
 
             {/* Desktop Menu */}
             <div className="hidden sm:flex items-center gap-8">
+
+                <button
+                    type="button"
+                    onClick={() => navigate("/seller/")}
+                    className="text-body bg-neutral-secondary-medium box-border border 
+                            border-gray-300
+                            hover:bg-gray-500/10 hover:text-heading
+                            focus:ring-neutral-tertiary
+                            shadow-xs font-medium leading-5 rounded-full 
+                            text-sm px-4 py-0.5 focus:outline-none cursor-pointer"
+                >
+                    Seller Dashboard
+                </button>
+
+
+
                 <NavLink to='/'>Home</NavLink>
                 <NavLink to='/products'>All Product</NavLink>
                 <NavLink to='/'>Contact</NavLink>
