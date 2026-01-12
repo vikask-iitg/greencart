@@ -94,8 +94,9 @@ app.use(async (req, res, next) => {
 });
 
 /* ================= ROUTES ================= */
-app.get('/', (req, res) => {
-    res.send("API is Working on Vercel");
+
+app.get("/", (req, res) => {
+  res.status(200).send("API is Working on Vercel");
 });
 
 app.use('/api/user', userRouter);
