@@ -13,22 +13,22 @@ const Cart = () => {
     const [paymentOption, setPaymentOption] = useState("COD");
 
     const getCart = () => {
-        const cart = [];
+        const tempArray = [];
 
-        for (const id in cartItems) {
-            const product = products.find(p => p._id === id);
+        for (const key in cartItems) {
+            const product = products.find(p => p._id === key);
 
-            // ✅ Guard check
+            // Guard check
             if (product) {
-                cart.push({
+                tempArray.push({
                     ...product,
-                    quantity: cartItems[id],
+                    quantity: cartItems[key],
                 });
             }
         }
-        return cart;
-    };
 
+        setCartArray(tempArray);
+    };
 
     const getUserAddress = async () => {
         try {
