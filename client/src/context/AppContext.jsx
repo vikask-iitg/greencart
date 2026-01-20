@@ -22,18 +22,28 @@ export const AppContextProvider = ({ children }) => {
     const [searchQuery, setSearchQuery] = useState({})
 
     // Fetch Seller Status
+    // const fetchSeller = async () => {
+    //     try {
+    //         const { data } = await axios.get('/api/seller/is-auth');
+    //         if (data.success) {
+    //             setIsSeller(true);
+    //         } else {
+    //             setIsSeller(false);
+    //         }
+    //     } catch (error) {
+    //         setIsSeller(false);
+    //     }
+    // }
+
     const fetchSeller = async () => {
         try {
             const { data } = await axios.get('/api/seller/is-auth');
-            if (data.success) {
-                setIsSeller(true);
-            } else {
-                setIsSeller(false);
-            }
-        } catch (error) {
+            setIsSeller(data.success); //  only one source of truth
+        } catch {
             setIsSeller(false);
         }
-    }
+    };
+
 
     // Fetch User Auth Status, User Data and Cart Items
     const fetchUser = async () => {

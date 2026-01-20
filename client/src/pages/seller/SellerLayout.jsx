@@ -4,7 +4,6 @@ import { useAppContext } from "../../context/AppContext";
 import toast from "react-hot-toast";
 
 const SellerLayout = () => {
-
     const { axios, navigate } = useAppContext();
 
     const sidebarLinks = [

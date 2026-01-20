@@ -16,7 +16,7 @@ const AddProduct = () => {
     const { axios } = useAppContext();
 
     const onSubmitHandler = async (event) => {
-        // event.preventDefault();
+        event.preventDefault();
 
         const formData = new FormData();
 
@@ -33,16 +33,16 @@ const AddProduct = () => {
         const { data } = await axios.post("/api/product/add", formData);
 
         if (data.success) {
-        toast.success(data.message);
+            toast.success(data.message);
 
-        // Clear form after submit
-        setName("");
-        setDescription("");
-        setCategory("");
-        setPrice("");
-        setOfferPrice("");
-        setFiles([]);
-    }
+            // Clear form after submit
+            setName("");
+            setDescription("");
+            setCategory("");
+            setPrice("");
+            setOfferPrice("");
+            setFiles([]);
+        }
     };
 
 
