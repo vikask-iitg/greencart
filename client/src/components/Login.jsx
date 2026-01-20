@@ -66,8 +66,22 @@ const Login = () => {
                             </span>
                         </p>
 
+                        {/* Auto Fill Action */}
+                        <button
+                            type="button"
+                            onClick={() => {
+                                setEmail("demo@gmail.com");
+                                setPassword("12345678");
+                            }}
+                            className="mt-3 block mx-auto text-xs font-medium
+                             text-red-600 hover:text-red-700 cursor-pointer"
+                        >
+                            [ Click Here To Auto Fill ]
+                        </button>
+
                     </div>
                 )}
+
 
 
                 {state === "register" && (
