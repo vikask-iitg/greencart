@@ -112,14 +112,28 @@ export const AppContextProvider = ({ children }) => {
     // Get cart total amount
     const getCartAmount = () => {
         let totalAmount = 0;
+
         for (const items in cartItems) {
-            let itemInfo = products.find((product) => product._id == items);
-            if (cartItems[items] > 0) {
-                totalAmount += itemInfo.offerPrice * cartItems[items]
+            const quantity = cartItems[items];
+
+            // ✅ Find product safely
+            const itemInfo = products.find(
+                (product) => product._id === items
+            );
+
+            // ✅ Guard checks
+            if (
+                itemInfo &&
+                typeof itemInfo.offerPrice === "number" &&
+                quantity > 0
+            ) {
+                totalAmount += itemInfo.offerPrice * quantity;
             }
         }
+
         return Math.floor(totalAmount * 100) / 100;
-    }
+    };
+
 
     // Fetch All Products
     useEffect(() => {

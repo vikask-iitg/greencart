@@ -12,16 +12,23 @@ const Cart = () => {
     const [selectedAddress, setSelectedAddress] = useState(dummyAddress[0]);
     const [paymentOption, setPaymentOption] = useState("COD");
 
-
     const getCart = () => {
-        let tempArray = [];
-        for (const key in cartItems) {
-            const product = products.find((item) => item._id === key)
-            product.quantity = cartItems[key]
-            tempArray.push(product)
+        const cart = [];
+
+        for (const id in cartItems) {
+            const product = products.find(p => p._id === id);
+
+            // ✅ Guard check
+            if (product) {
+                cart.push({
+                    ...product,
+                    quantity: cartItems[id],
+                });
+            }
         }
-        setCartArray(tempArray);
-    }
+        return cart;
+    };
+
 
     const getUserAddress = async () => {
         try {
