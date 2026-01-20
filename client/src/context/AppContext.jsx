@@ -142,6 +142,24 @@ export const AppContextProvider = ({ children }) => {
         fetchProducts();
     }, [])
 
+    // Clean cart when products are ready
+    useEffect(() => {
+        if (products.length === 0) return;
+
+        let cleanedCart = {};
+
+        for (const id in cartItems) {
+            const exists = products.some(p => p._id === id);
+            if (exists && cartItems[id] > 0) {
+                cleanedCart[id] = cartItems[id];
+            }
+        }
+
+        if (JSON.stringify(cleanedCart) !== JSON.stringify(cartItems)) {
+            setCartItems(cleanedCart);
+        }
+    }, [products]);
+
     // Update Database Cart Items
     useEffect(() => {
         const updateCart = async () => {

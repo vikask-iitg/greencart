@@ -285,7 +285,8 @@ const Navbar = () => {
                 {/* Cart */}
                 <div onClick={() => navigate('/cart')} className="relative cursor-pointer">
                     <img src={assets.nav_cart_icon} alt="cart" />
-                    <span className="absolute -top-2 -right-3 text-xs text-white bg-primary w-[18px] h-[18px] rounded-full flex items-center justify-center">
+                    <span className="absolute -top-2 -right-3 text-xs text-white bg-primary 
+                    w-4.5 h-4.5 rounded-full flex items-center justify-center">
                         {getCartCount()}
                     </span>
                 </div>
