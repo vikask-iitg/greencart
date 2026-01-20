@@ -44,6 +44,32 @@ const Login = () => {
                 <p className="text-2xl font-medium m-auto">
                     <span className="text-primary">User</span> {state === "login" ? "Login" : "Sign Up"}
                 </p>
+
+                {state === "login" && (
+                    <div className="w-full mt-3 bg-red-50 border border-red-200 rounded-md p-3 text-sm text-red-700">
+
+                        <p className="font-semibold text-red-600 text-center mb-2">
+                            Demo Credentials
+                        </p>
+
+                        <p className="text-center">
+                            Email:{" "}
+                            <span className="font-mono text-red-800">
+                                demo@gmail.com
+                            </span>
+                        </p>
+
+                        <p className="text-center">
+                            Password:{" "}
+                            <span className="font-mono text-red-800">
+                                12345678
+                            </span>
+                        </p>
+
+                    </div>
+                )}
+
+
                 {state === "register" && (
                     <div className="w-full">
                         <p>Name</p>
