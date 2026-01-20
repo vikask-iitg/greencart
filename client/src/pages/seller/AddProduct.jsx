@@ -15,46 +15,8 @@ const AddProduct = () => {
 
     const { axios } = useAppContext();
 
-
-    // const onSubmitHandler = async (event) => {
-    //     try {
-    //         event.preventDefault();
-
-    //         const productData = {
-    //             name,
-    //             description: description.split('\n'),
-    //             category,
-    //             price,
-    //             offerPrice
-    //         }
-
-    //         const formData = new FormData();
-
-    //         for (let i = 0; i < files.length; i++) {
-    //             formData.append('images', files[i]);
-    //         }
-
-    //         const { data } = await axios.post('/api/product/add', formData);
-
-    //         if (data.success) {
-    //             toast.success(data.message);
-    //             setName('');
-    //             setDescription('');
-    //             setCategory('');
-    //             setPrice('');
-    //             setOfferPrice('');
-    //             setFiles([]);
-    //         } else {
-    //             toast.error(data.message);
-    //         }
-
-    //     } catch (error) {
-    //         toast.error(error.message);
-    //     }
-    // }
-
     const onSubmitHandler = async (event) => {
-        event.preventDefault();
+        // event.preventDefault();
 
         const formData = new FormData();
 
@@ -70,7 +32,17 @@ const AddProduct = () => {
 
         const { data } = await axios.post("/api/product/add", formData);
 
-        if (data.success) toast.success(data.message);
+        if (data.success) {
+        toast.success(data.message);
+
+        // Clear form after submit
+        setName("");
+        setDescription("");
+        setCategory("");
+        setPrice("");
+        setOfferPrice("");
+        setFiles([]);
+    }
     };
 
 
