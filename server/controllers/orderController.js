@@ -172,43 +172,6 @@ export const stripeWebhooks = async (request, response) => {
     response.json({ received: true })
 }
 
-// export const stripeWebhooks = async (request, response) => {
-//     const stripeInstance = new stripe(process.env.STRIPE_SECRET_KEY);
-//     const sig = request.headers["stripe-signature"];
-
-//     let event;
-
-//     try {
-//         event = stripeInstance.webhooks.constructEvent(
-//             request.body,
-//             sig,
-//             process.env.STRIPE_WEBHOOK_SECRET
-//         );
-//     } catch (error) {
-//         return response.status(400).send(`Webhook Error: ${error.message}`);
-//     }
-
-//     // ✅ CORRECT EVENT FOR CHECKOUT
-//     if (event.type === "checkout.session.completed") {
-//         const session = event.data.object;
-
-//         const { orderId, userId } = session.metadata;
-
-//         // ✅ MARK STRIPE ORDER AS PAID
-//         await Order.findByIdAndUpdate(orderId, {
-//             isPaid: true,
-//             paymentType: "Online",
-//             status: "Order Placed",
-//         });
-
-//         // ✅ CLEAR USER CART
-//         await User.findByIdAndUpdate(userId, { cartItems: {} });
-//     }
-
-//     response.json({ received: true });
-// };
-
-
 // Get Orders by User ID : /api/order/user
 export const getUserOrders = async (req, res) => {
     try {
