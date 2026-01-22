@@ -12,10 +12,12 @@ const Loading = () => {
     useEffect(() => {
         if (nextUrl) {
             setTimeout(() => {
-                navigate(`/${nextUrl}`)
-            }, 5000)
+                navigate(`/${nextUrl}`, {
+                    state: { orderSuccess: true }
+                });
+            }, 2000);
         }
-    }, [nextUrl])
+    }, [nextUrl]);
 
     return (
         <div className='flex justify-center items-center h-screen'>

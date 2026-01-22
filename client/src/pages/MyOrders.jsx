@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useAppContext } from '../context/AppContext'
+import { useLocation } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const MyOrders = () => {
     const [myOrders, setMyOrders] = useState([])
     const { currency, axios, user } = useAppContext()
+    const location = useLocation();
+
 
     const fetchMyOrders = async () => {
         try {
@@ -21,6 +25,16 @@ const MyOrders = () => {
             fetchMyOrders();
         }
     }, [user])
+
+    useEffect(() => {
+        if (location.state?.orderSuccess) {
+            toast.success("Order Placed Successfully");
+
+            // remove state so toast does not reappear on refresh
+            window.history.replaceState({}, document.title);
+        }
+    }, [location.state]);
+
 
     return (
         <div className='mt-16 pb-16'>
