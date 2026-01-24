@@ -7,29 +7,29 @@ import { useEffect } from "react";
 const SellerLayout = () => {
     const { axios, navigate, setIsSeller, isSeller } = useAppContext();
 
-    // re-validate seller auth whenever SellerLayout loads.
-    useEffect(() => {
-        // if frontend already knows seller is logged in, don't block
-        if (isSeller) return;
+    // // re-validate seller auth whenever SellerLayout loads.
+    // useEffect(() => {
+    //     // if frontend already knows seller is logged in, don't block
+    //     if (isSeller) return;
 
-        const checkSellerAuth = async () => {
-            try {
-                const { data } = await axios.get("/api/seller/is-auth");
+    //     const checkSellerAuth = async () => {
+    //         try {
+    //             const { data } = await axios.get("/api/seller/is-auth");
 
-                if (!data.success) {
-                    setIsSeller(false);
-                    navigate("/seller");
-                } else {
-                    setIsSeller(true);
-                }
-            } catch {
-                setIsSeller(false);
-                navigate("/seller");
-            }
-        };
+    //             if (!data.success) {
+    //                 setIsSeller(false);
+    //                 navigate("/seller");
+    //             } else {
+    //                 setIsSeller(true);
+    //             }
+    //         } catch {
+    //             setIsSeller(false);
+    //             navigate("/seller");
+    //         }
+    //     };
 
-        checkSellerAuth();
-    }, [isSeller]);
+    //     checkSellerAuth();
+    // }, [isSeller]);
 
     const sidebarLinks = [
         { name: "Add Product", path: "/seller", icon: assets.add_icon },
