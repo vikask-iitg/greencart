@@ -9,22 +9,27 @@ const SellerLayout = () => {
 
     // re-validate seller auth whenever SellerLayout loads.
     useEffect(() => {
+        // if frontend already knows seller is logged in, don't block
+        if (isSeller) return;
+
         const checkSellerAuth = async () => {
             try {
                 const { data } = await axios.get("/api/seller/is-auth");
 
                 if (!data.success) {
                     setIsSeller(false);
-                    navigate("/seller"); // redirect to seller login
+                    navigate("/seller");
+                } else {
+                    setIsSeller(true);
                 }
-            } catch (error) {
+            } catch {
                 setIsSeller(false);
                 navigate("/seller");
             }
         };
 
         checkSellerAuth();
-    }, []);
+    }, [isSeller]);
 
     const sidebarLinks = [
         { name: "Add Product", path: "/seller", icon: assets.add_icon },
