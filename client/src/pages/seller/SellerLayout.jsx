@@ -4,7 +4,7 @@ import { useAppContext } from "../../context/AppContext";
 import toast from "react-hot-toast";
 
 const SellerLayout = () => {
-    const { axios, navigate } = useAppContext();
+    const { axios, navigate, setIsSeller } = useAppContext();
 
     const sidebarLinks = [
         { name: "Add Product", path: "/seller", icon: assets.add_icon },
@@ -16,15 +16,16 @@ const SellerLayout = () => {
         try {
             const { data } = await axios.get('/api/seller/logout');
             if (data.success) {
+                setIsSeller(false);   // make the setIsSeller false
                 toast.success(data.message);
-                navigate('/');
+                navigate('/seller'); // go to seller login
             } else {
                 toast.error(data.message);
             }
         } catch (error) {
             toast.error(error.message);
         }
-    }
+    };
 
 
     return (
