@@ -2,9 +2,29 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import { assets } from "../../assets/assets";
 import { useAppContext } from "../../context/AppContext";
 import toast from "react-hot-toast";
+import { useEffect } from "react";
 
 const SellerLayout = () => {
     const { axios, navigate, setIsSeller } = useAppContext();
+
+    // re-validate seller auth whenever SellerLayout loads.
+    useEffect(() => {
+        const checkSellerAuth = async () => {
+            try {
+                const { data } = await axios.get("/api/seller/is-auth");
+
+                if (!data.success) {
+                    setIsSeller(false);
+                    navigate("/seller"); // redirect to seller login
+                }
+            } catch (error) {
+                setIsSeller(false);
+                navigate("/seller");
+            }
+        };
+
+        checkSellerAuth();
+    }, []);
 
     const sidebarLinks = [
         { name: "Add Product", path: "/seller", icon: assets.add_icon },
