@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { useEffect } from "react";
 
 const SellerLayout = () => {
-    const { axios, navigate, setIsSeller } = useAppContext();
+    const { axios, navigate, setIsSeller, isSeller } = useAppContext();
 
     // re-validate seller auth whenever SellerLayout loads.
     useEffect(() => {
