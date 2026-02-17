@@ -16,7 +16,7 @@ import { stripeWebhooks } from '../controllers/orderController.js';
 const app = express();
 
 /* ================= STRIPE WEBHOOK ================= */
-// ⚠️ MUST be before express.json()
+// MUST be before express.json()
 app.post(
     '/stripe',
     express.raw({ type: 'application/json' }),
@@ -63,5 +63,5 @@ app.use('/api/cart', cartRouter);
 app.use('/api/address', addressRouter);
 app.use('/api/order', orderRouter);
 
-/* ❌ NO app.listen() */
+/* NO app.listen() */
 export default app;

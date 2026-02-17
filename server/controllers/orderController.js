@@ -7,7 +7,7 @@ import User from "../models/User.js"
 // Place Order COD : /api/order/cod
 export const placeOrderCOD = async (req, res) => {
     try {
-        const userId = req.userId; // ✅ from auth middleware
+        const userId = req.userId; // from auth middleware
         const { items, address } = req.body;
         const paymentType = "COD";
 
@@ -43,7 +43,7 @@ export const placeOrderCOD = async (req, res) => {
 // Place Order Stripe : /api/order/stripe
 export const placeOrderStripe = async (req, res) => {
     try {
-        const userId = req.userId; // ✅ from auth middleware
+        const userId = req.userId; // from auth middleware
         const { items, address } = req.body;
         const { origin } = req.headers;
         const paymentType = "Online";
@@ -113,7 +113,6 @@ export const placeOrderStripe = async (req, res) => {
 };
 
 // Stripe webhooks to verify payments action: /stripe
-
 export const stripeWebhooks = async (request, response) => {
     // Stripe Gateway Initialize
     const stripeInstance = new stripe(process.env.STRIPE_SECRET_KEY);
@@ -161,7 +160,10 @@ export const stripeWebhooks = async (request, response) => {
             });
 
             const { orderId } = session.data[0].metadata;
-            await Order.findByIdAndUpdate(orderId);
+            await Order.findByIdAndUpdate(orderId, {
+                status: "Payment Failed",
+                isPaid: false
+            });
             break;
         }
 
@@ -175,7 +177,7 @@ export const stripeWebhooks = async (request, response) => {
 // Get Orders by User ID : /api/order/user
 export const getUserOrders = async (req, res) => {
     try {
-        const userId = req.userId; // ✅ from auth middleware
+        const userId = req.userId; // from auth middleware
 
         const orders = await Order.find({
             userId,
@@ -191,8 +193,6 @@ export const getUserOrders = async (req, res) => {
         res.json({ success: false, message: error.message });
     }
 };
-
-
 
 // Get All Orders (for seller / admin) : /api/order/seller
 export const getAllOrders = async (req, res) => {
