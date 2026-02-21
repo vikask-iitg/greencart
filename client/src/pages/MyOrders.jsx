@@ -29,8 +29,6 @@ const MyOrders = () => {
     useEffect(() => {
         if (location.state?.orderSuccess) {
             toast.success("Order Placed Successfully");
-
-            // remove state so toast does not reappear on refresh
             window.history.replaceState({}, document.title);
         }
     }, [location.state]);

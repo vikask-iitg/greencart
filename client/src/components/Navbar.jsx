@@ -159,7 +159,7 @@ const Navbar = () => {
             <div className="flex items-center gap-5 sm:hidden">
                 <div onClick={() => navigate('/cart')} className="relative cursor-pointer">
                     <img src={assets.nav_cart_icon} alt="cart" />
-                    <span className="absolute -top-2 -right-3 text-xs text-white bg-primary w-[18px] h-[18px] rounded-full flex items-center justify-center">
+                    <span className="absolute -top-2 -right-3 text-xs text-white bg-primary w-4.5 h-4.5 rounded-full flex items-center justify-center">
                         {getCartCount()}
                     </span>
                 </div>
@@ -171,7 +171,7 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             {open && (
-                <div className="absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex flex-col gap-2 px-5 text-sm sm:hidden z-40">
+                <div className="absolute top-15 left-0 w-full bg-white shadow-md py-4 flex flex-col gap-2 px-5 text-sm sm:hidden z-40">
                     <NavLink to="/" onClick={() => setOpen(false)}>Home</NavLink>
                     <NavLink to="/products" onClick={() => setOpen(false)}>All Products</NavLink>
                     <NavLink to="/" onClick={() => setOpen(false)}>Contact</NavLink>

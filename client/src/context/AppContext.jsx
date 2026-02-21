@@ -126,12 +126,12 @@ export const AppContextProvider = ({ children }) => {
         for (const items in cartItems) {
             const quantity = cartItems[items];
 
-            // ✅ Find product safely
+            // Find product safely
             const itemInfo = products.find(
                 (product) => product._id === items
             );
 
-            // ✅ Guard checks
+            // Guard checks
             if (
                 itemInfo &&
                 typeof itemInfo.offerPrice === "number" &&
